@@ -1,0 +1,39 @@
+.Donating {
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+    column-gap: 24px;
+
+    @media(max-width: 900px) {
+        flex-wrap: wrap;
+    }
+
+    &_img {
+        min-width: 420px;
+
+        @media(max-width: 900px) {
+            order: 2;
+        }
+
+        @media(max-width: 500px) {
+            min-width: 100%;
+        }
+
+        img {
+            width: 100%;
+        }
+    }
+
+    &_text {
+        font-size: 40px;
+
+        @media(max-width: 900px) {
+            text-align: center;
+            order: 1;
+        }
+
+        @media(max-width: 500px) {
+            font-size: 24px;
+        }
+    }
+}

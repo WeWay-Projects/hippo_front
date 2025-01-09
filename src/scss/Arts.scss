@@ -1,0 +1,22 @@
+.Arts {
+    margin-top: 90px;
+
+    &_row {
+        display: flex;
+        justify-content: space-between;
+
+        img {
+            width: 30%;
+        }
+    }
+
+    &_large {
+        margin-top: 36px;
+        display: flex;
+        justify-content: center;
+
+        img {
+            width: 100%;
+        }
+    }
+}

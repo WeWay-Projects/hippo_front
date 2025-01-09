@@ -1,0 +1,249 @@
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video,
+button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    box-sizing: border-box;
+    color: white;
+    font-family: "Rubber Duck";
+}
+
+.dnone {
+    display: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+input,
+textarea {
+    font-family: "Rubber Duck";
+    box-sizing: border-box;
+}
+
+.free_img {
+    width: 0px;
+    height: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+.container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0px 12px;
+}
+
+:root {
+    --toastify-color-success: #4DA2FF;
+}
+
+
+
+.BTN {
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+    overflow: hidden;
+
+    span {
+        position: relative;
+        z-index: 2;
+        transition: color 500ms;
+    }
+
+    img {
+        filter: invert(0);
+        transition: filter 500ms;
+    }
+
+    .circle {
+        width: 100% !important;
+        pointer-events: none;
+        top: -10px;
+
+        &_inner {
+            min-width: 10px;
+            min-height: 10px;
+            background: #e9f4ff;
+            border-radius: 10px;
+            transition: scale 1s, opacity 1s;
+            opacity: 0;
+        }
+    }
+
+    &:hover {
+        img {
+            position: relative;
+            z-index: 2;
+            filter: invert(1);
+        }
+
+        .circle {
+            &_inner {
+                scale: 50;
+                opacity: 1;
+                transition: scale 1s, opacity 100ms;
+            }
+        }
+
+        span {
+            color: #4DA2FF !important;
+        }
+    }
+
+
+    &_white {
+        &:hover {
+            span {
+                position: relative;
+                z-index: 2;
+                color: white !important;
+            }
+        }
+
+        .circle {
+            &_inner {
+                background: #326aa5;
+            }
+        }
+    }
+}
+
+
+/* Для Firefox */
+body {
+    scrollbar-width: thin;
+    /* Уменьшенный размер полосы */
+    scrollbar-color: rgba(0, 0, 0, 0.5) rgba(0, 0, 0, 0);
+    /* Цвет ползунка и фона */
+}
+
+/* Стили для прокрутки */
+::-webkit-scrollbar {
+    width: 8px;
+    /* Ширина полосы прокрутки */
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0);
+    /* Прозрачная основа */
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.5);
+    /* Цвет и прозрачность ползунка */
+    border-radius: 4px;
+    /* Скругленные края */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0);
+    /* Цвет при наведении */
+}

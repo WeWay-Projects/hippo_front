@@ -1,0 +1,55 @@
+import { toast } from 'react-toastify';
+import './Hero.scss';
+export default () => {
+
+    const copyCa = () => {
+
+        navigator.clipboard.writeText('0x8993129d72e733985f7f1a00396cbd055bad6f817fee36576ce483c8bbb8b87b')
+            .then(() => {
+                toast.success('Successfully copied!')
+            })
+            .catch(err => {
+                console.error("Err: ", err);
+            });
+    }
+
+    return (
+        <div className='Hero'>
+            <div className='Hero_header'>
+                <a href='https://x.com/hippo_cto' target='_blank' className='Hero_header_element BTN'>
+                    <img src="/img/x.svg" alt="" />
+                    <div className='circle free_img'>
+                        <div className="circle_inner"></div>
+                    </div>
+                </a>
+                <a href='https://t.me/HIPPO_SUI' target='_blank' className='Hero_header_element BTN'>
+                    <img src="/img/tg.svg" alt="" />
+                    <div className='circle free_img'>
+                        <div className="circle_inner"></div>
+                    </div>
+                </a>
+            </div>
+            <div className='Hero_content'>
+                <img src="/img/heroDecor.png" alt="" />
+            </div>
+            <div className='Hero_buttons'>
+                <a className='Hero_button BTN BTN_white' href='https://dexscreener.com/sui/0xb785e6eed355c1f8367c06d2b0cb9303ab167f8359a129bb003891ee54c6fce0' target='blank'>
+                    <span>
+                        buy $HIPPO now
+                    </span>
+                    <div className='circle free_img'>
+                        <div className="circle_inner"></div>
+                    </div>
+                </a>
+                <div className='Hero_button BTN' onClick={copyCa}>
+                    <span>
+                        CA
+                    </span>
+                    <div className='circle free_img'>
+                        <div className="circle_inner"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}

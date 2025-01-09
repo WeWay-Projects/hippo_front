@@ -1,0 +1,119 @@
+.Leaderboard {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background: #000a;
+    z-index: 9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    &_inner {
+        cursor: default;
+        border-radius: 20px;
+        width: 90%;
+        max-width: 900px;
+        background: #4DA2FF;
+        box-shadow: 0px 10px #105BAE;
+        padding: 24px;
+    }
+
+    &_list {
+        max-height: calc(80vh - 50px);
+        overflow-y: scroll;
+        margin-top: 12px;
+    }
+
+    &_element {
+        display: flex;
+        align-items: center;
+        border-top: 1px solid white;
+
+        &_rank,
+        &_name,
+        &_score {
+            height: 48px;
+            display: flex;
+            align-items: center;
+            font-size: 32px;
+            padding: 0px 8px;
+            overflow: hidden;
+
+            @media(max-width: 700px) {
+                font-size: 20px;
+            }
+
+            @media(max-width: 400px) {
+                padding: 0px 4px;
+                height: 32px;
+                font-size: 16px;
+            }
+        }
+
+        &_rank {
+            min-width: 120px;
+            text-align: center;
+
+            @media(max-width: 700px) {
+                min-width: 80px;
+            }
+
+            @media(max-width: 400px) {
+                min-width: 60px;
+            }
+        }
+
+        &_name {
+            min-width: 220px;
+            width: 100%;
+            text-align: center;
+            padding: 0px 12px;
+            border-left: 1px solid white;
+            border-right: 1px solid white;
+
+            @media(max-width: 700px) {
+                min-width: 120px;
+            }
+
+            @media(max-width: 400px) {
+                min-width: 80px;
+            }
+        }
+
+        &_score {
+            min-width: 150px;
+            width: 50%;
+            justify-content: right;
+
+            @media(max-width: 700px) {
+                min-width: 80px;
+            }
+
+            @media(max-width: 400px) {
+                min-width: 60px;
+            }
+        }
+    }
+
+    &_header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &_text {
+            font-size: 42px;
+
+            @media(max-width: 700px) {
+                font-size: 24px;
+            }
+        }
+
+        &_cross {
+            cursor: pointer;
+            font-size: 42px;
+        }
+    }
+}

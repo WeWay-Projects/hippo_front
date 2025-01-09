@@ -1,0 +1,111 @@
+.Hero {
+    &_header {
+        display: flex;
+        justify-content: right;
+        align-items: center;
+        padding: 24px;
+        column-gap: 12px;
+
+        &_element {
+            width: 72px;
+            height: 72px;
+            padding-top: 2px;
+
+            border-radius: 24px;
+            background: #4DA2FF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0px 4px 0px #105BAE;
+
+            transition: transform 200ms,
+                box-shadow 200ms;
+            cursor: pointer;
+
+            &:hover {
+                transform: translate(0px, 4px);
+                box-shadow: 0px 0px 0px #105BAE;
+            }
+        }
+    }
+
+    &_content {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        img {
+            width: 100%;
+            max-width: 300px;
+        }
+    }
+
+    &_buttons {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 48px;
+        column-gap: 12px;
+
+        img {
+            width: 100%;
+            max-width: 300px;
+        }
+    }
+
+    &_button {
+        padding: 28px 36px;
+        border-radius: 24px;
+        transition: transform 200ms,
+            box-shadow 200ms;
+        cursor: pointer;
+        font-size: 28px;
+        overflow: hidden;
+
+        &:hover {
+            transform: translate(0px, 4px);
+        }
+
+        @media(max-width: 500px) {
+            padding: 16px 24px;
+            font-size: 18px;
+            border-radius: 16px;
+        }
+
+        &:nth-child(1) {
+            background: #fff;
+
+            span {
+                color: #4DA2FF;
+            }
+
+            .circle {
+                background: #4DA2FF;
+            }
+
+            box-shadow: 0px 4px 0px #999;
+
+            &:hover {
+                box-shadow: 0px 0px 0px #999;
+            }
+        }
+
+        &:nth-child(2) {
+            background: #4DA2FF;
+            box-shadow: 0px 4px 0px #105BAE;
+
+            span {
+                color: #fff;
+            }
+
+            &:hover {
+                box-shadow: 0px 0px 0px #105BAE;
+            }
+        }
+
+
+
+
+
+    }
+}
