@@ -99,7 +99,7 @@ export default observer(() => {
                     {/* ${gameStore.pointsNow && 'Game_field_decor_square_inner_win'} */}
                 </div>
             </div>
-            <div className='Game_controls'>
+            <div className='Game_controls container'>
                 <div className='Game_controls_group'>
                     <div className='Game_controls_lives'>
                         <img src={gameStore.lives >= 1 ? `/img/heart.svg` : '/img/heartBroken.svg'} alt="" />

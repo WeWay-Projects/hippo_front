@@ -77,7 +77,7 @@ class GameStore {
 
     initGame = () => {
         this.gameField = generateRandomString(4000);
-        this.score = 99;
+        this.score = 0;
         this.currentMove = -3;
         this.pointsNow = 0;
         this.lives = 3;
