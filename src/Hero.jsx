@@ -33,7 +33,7 @@ export default () => {
                 <img src="/img/heroDecor.png" alt="" />
             </div>
             <div className='Hero_buttons'>
-                <a className='Hero_button BTN BTN_white' href='https://dexscreener.com/sui/0xb785e6eed355c1f8367c06d2b0cb9303ab167f8359a129bb003891ee54c6fce0' target='blank'>
+                <a className='Hero_button BTN BTN_white' href='https://app.cetus.zone/swap?from=0x2::sui::SUI&to=0x8993129d72e733985f7f1a00396cbd055bad6f817fee36576ce483c8bbb8b87b::sudeng::SUDENG' target='blank'>
                     <span>
                         buy $HIPPO now
                     </span>
