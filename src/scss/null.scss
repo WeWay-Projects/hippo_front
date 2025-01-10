@@ -220,30 +220,30 @@ html {
 /* Для Firefox */
 body {
     scrollbar-width: thin;
-    /* Уменьшенный размер полосы */
-    scrollbar-color: rgba(0, 0, 0, 0.5) rgba(0, 0, 0, 0);
-    /* Цвет ползунка и фона */
+    /* Уменьшенная ширина полосы прокрутки */
+    scrollbar-color: #4DA2FF #000;
+    /* Цвет ползунка и прозрачный фон */
 }
 
-/* Стили для прокрутки */
+/* Для браузеров на базе WebKit (Chrome, Edge, Safari, Opera) */
 ::-webkit-scrollbar {
     width: 8px;
     /* Ширина полосы прокрутки */
 }
 
 ::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0);
-    /* Прозрачная основа */
+    background: #000;
+    /* Прозрачный трек полосы прокрутки */
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.5);
-    /* Цвет и прозрачность ползунка */
+    background: #4DA2FF;
+    /* Цвет ползунка */
     border-radius: 4px;
     /* Скругленные края */
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(0, 0, 0, 0);
-    /* Цвет при наведении */
+    background: #4DA2FF88;
+    /* Цвет ползунка при наведении (с прозрачностью) */
 }
