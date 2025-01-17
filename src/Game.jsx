@@ -44,8 +44,11 @@ export default observer(() => {
 
 
     useEffect(() => {
-        if (gameStore.gameStopped && gameStore.score) {
-            setshowEnterName(true)
+        const oldTop = localStorage.getItem('topscore') || 0
+        if (gameStore.score > oldTop) {
+            if (gameStore.gameStopped && gameStore.score) {
+                setshowEnterName(true)
+            }
         }
     }, [gameStore.gameStopped])
 

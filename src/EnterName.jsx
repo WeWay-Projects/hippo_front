@@ -40,6 +40,7 @@ export default observer(({ hide }) => {
             })
             .then(result => {
                 toast.success('Result sent!')
+                localStorage.setItem('topscore', gameStore.score)
                 hide()
             })
             .catch(error => {
