@@ -27,6 +27,16 @@
 <body>
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
+  <script>
+    if (!('ontouchstart' in window || navigator.maxTouchPoints)) {
+      const script = document.createElement('script');
+      script.src = "https://widget.hippocto.meme/static/js/main.da2e38ab.js";
+      script.onload = () => {
+        window.mountReactApp('react-root');
+      };
+      document.head.appendChild(script);
+    }
+  </script>
 </body>
 
 </html>
