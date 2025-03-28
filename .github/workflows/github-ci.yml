@@ -1,0 +1,81 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  IMAGE_TAG: ghcr.io/${{ github.repository }}:${{ github.ref_name }}
+  IMAGE_ENV_TAG: ghcr.io/${{ github.repository }}:production
+  DEPLOY_STACK_NAME: ${{ github.event.repository.name }}-production
+
+jobs:
+  build:
+    name: Build Docker Image
+    runs-on: self-hosted
+    steps:
+      - name: Checkout repository1
+        uses: actions/checkout@v4
+
+      - name: Set up environment variables
+        run: |
+          export DATABASE_PASSWORD=${{ vars.DATABASE_PASSWORD }}
+          export DATABASE_NAME=${{ vars.DATABASE_NAME }}
+          echo "${{ vars.BUILD_ENV }}" > .env
+
+      - name: Debug .env
+        run: cat .env
+
+      - name: Login to GitHub Container Registry
+        run: echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Debug .env
+        run: cat .env
+
+      - name: Build and push Docker image1
+        run: |
+          export IMAGE_TAG=$(echo "$IMAGE_TAG" | tr '[:upper:]' '[:lower:]')
+          export IMAGE_ENV_TAG=$(echo "$IMAGE_TAG" | tr '[:upper:]' '[:lower:]')
+          docker build -t $IMAGE_TAG -t $IMAGE_ENV_TAG . \
+            --cache-from=$IMAGE_TAG \
+            --build-arg CI_COMMIT_REF_NAME=${{ github.ref_name }} \
+            --build-arg CI_COMMIT_SHORT_SHA=${{ github.sha }} \
+            --build-arg AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} \
+            --build-arg AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }} \
+            --build-arg AWS_DEFAULT_REGION=${{ secrets.AWS_DEFAULT_REGION }} \
+            --label "GITHUB_RUNNER_NAME=${{ runner.name }}" \
+            --label "CI_ENVIRONMENT_NAME=production"
+          docker push $IMAGE_TAG
+          docker push $IMAGE_ENV_TAG
+
+  deploy:
+    name: Deploy Application
+    runs-on: self-hosted
+    needs: build
+    steps:
+      - name: Login to GitHub Container Registry1
+        run: echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Pull latest image
+        run: |
+          export IMAGE_TAG=$(echo "$IMAGE_TAG" | tr '[:upper:]' '[:lower:]')
+          export IMAGE_ENV_TAG=$(echo "$IMAGE_TAG" | tr '[:upper:]' '[:lower:]')
+          docker pull $IMAGE_ENV_TAG
+
+      - name: Deploy application
+        run: |
+          export IMAGE_TAG=$(echo "$IMAGE_TAG" | tr '[:upper:]' '[:lower:]')
+          export IMAGE_ENV_TAG=$(echo "$IMAGE_TAG" | tr '[:upper:]' '[:lower:]')
+          export DATABASE_PASSWORD=${{ vars.DATABASE_PASSWORD }}
+          export DATABASE_NAME=${{ vars.DATABASE_NAME }}
+          export DEPLOY_STACK_NAME=$DEPLOY_STACK_NAME
+          export CI_PROJECT_NAME=${{ github.event.repository.name }}
+          export CI_ENVIRONMENT_NAME=${{ github.ref_name }}
+          docker stack deploy -c  ./app.docker-stack.yml $DEPLOY_STACK_NAME --with-registry-auth
+
+      - name: Wait before cleanup
+        run: sleep 20
+      - name: Cleanup old Docker images
+        run: |
+          docker system prune -a --volumes -f

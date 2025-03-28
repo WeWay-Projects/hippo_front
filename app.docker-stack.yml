@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  app:
+    image: $IMAGE_ENV_TAG
+    networks:
+      - web
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.${DEPLOY_STACK_NAME}.rule=Host(`hippoweb.justdev.app`)"
+        - "traefik.http.routers.${DEPLOY_STACK_NAME}.entrypoints=web"
+        - "traefik.http.services.${DEPLOY_STACK_NAME}-service.loadBalancer.server.port=4173"
+        # - "traefik.http.middlewares.${DEPLOY_STACK_NAME}-auth.basicauth.users=test:$$apr1$$H6uskkkW$$IgXLP6ewTrSuBkTrqE8wj/,test2:$$apr1$$d9hr9HBB$$4HxwgUir3HP4EsggP/QNo0"
+        # - "traefik.http.routers.${DEPLOY_STACK_NAME}.middlewares=${DEPLOY_STACK_NAME}-auth"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "4M"
+        max-file: "3"
+        compress: "true"
+
+networks:
+  web:
+    external: true
+  # internal:
