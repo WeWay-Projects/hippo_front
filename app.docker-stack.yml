@@ -8,7 +8,7 @@ services:
     deploy:
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.${DEPLOY_STACK_NAME}.rule=Host(`hippocto.meme`)"
+        - "traefik.http.routers.${DEPLOY_STACK_NAME}.rule=Host(`hippocto.meme`) || Host(`www.hippocto.meme`)"
         - "traefik.http.routers.${DEPLOY_STACK_NAME}.entrypoints=web"
         - "traefik.http.services.${DEPLOY_STACK_NAME}-service.loadBalancer.server.port=4173"
         # - "traefik.http.middlewares.${DEPLOY_STACK_NAME}-auth.basicauth.users=test:$$apr1$$H6uskkkW$$IgXLP6ewTrSuBkTrqE8wj/,test2:$$apr1$$d9hr9HBB$$4HxwgUir3HP4EsggP/QNo0"
