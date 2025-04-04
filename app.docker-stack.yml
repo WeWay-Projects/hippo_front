@@ -11,6 +11,12 @@ services:
         - "traefik.http.routers.${DEPLOY_STACK_NAME}.rule=Host(`hippocto.meme`) || Host(`www.hippocto.meme`)"
         - "traefik.http.routers.${DEPLOY_STACK_NAME}.entrypoints=web"
         - "traefik.http.services.${DEPLOY_STACK_NAME}-service.loadBalancer.server.port=4173"
+        - "traefik.http.routers.${DEPLOY_STACK_NAME}-www.middlewares=redirect-to-root"
+        - "traefik.http.middlewares.redirect-to-root.redirectregex.regex=^https?://www\\.(.*)"
+        - "traefik.http.middlewares.redirect-to-root.redirectregex.replacement=https://$1"
+        - "traefik.http.middlewares.redirect-to-root.redirectregex.permanent=true"
+        - "traefik.http.routers.${DEPLOY_STACK_NAME}-https.entrypoints=websecure"
+        - "traefik.http.routers.${DEPLOY_STACK_NAME}-https.tls=true"
         # - "traefik.http.middlewares.${DEPLOY_STACK_NAME}-auth.basicauth.users=test:$$apr1$$H6uskkkW$$IgXLP6ewTrSuBkTrqE8wj/,test2:$$apr1$$d9hr9HBB$$4HxwgUir3HP4EsggP/QNo0"
         # - "traefik.http.routers.${DEPLOY_STACK_NAME}.middlewares=${DEPLOY_STACK_NAME}-auth"
     logging:
